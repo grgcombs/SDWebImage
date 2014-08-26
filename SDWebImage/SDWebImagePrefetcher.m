@@ -62,11 +62,11 @@
 
         if (image)
         {
-            NSLog(@"Prefetched %d out of %d", self.finishedCount, self.prefetchURLs.count);
+            NSLog(@"Prefetched %lu out of %lu", (unsigned long)self.finishedCount, (unsigned long)self.prefetchURLs.count);
         }
         else
         {
-            NSLog(@"Prefetched %d out of %d (Failed)", self.finishedCount, [self.prefetchURLs count]);
+            NSLog(@"Prefetched %lu out of %lu (Failed)", (unsigned long)self.finishedCount, (unsigned long)[self.prefetchURLs count]);
 
             // Add last failed
             self.skippedCount++;
@@ -86,7 +86,7 @@
 - (void)reportStatus
 {
     NSUInteger total = [self.prefetchURLs count];
-    NSLog(@"Finished prefetching (%d successful, %d skipped, timeElasped %.2f)", total - self.skippedCount, self.skippedCount, CFAbsoluteTimeGetCurrent() - self.startedTime);
+    NSLog(@"Finished prefetching (%u successful, %lu skipped, timeElasped %.2f)", total - self.skippedCount, (unsigned long)self.skippedCount, CFAbsoluteTimeGetCurrent() - self.startedTime);
 }
 
 - (void)prefetchURLs:(NSArray *)urls

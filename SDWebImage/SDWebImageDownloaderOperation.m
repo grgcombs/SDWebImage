@@ -190,7 +190,7 @@
             // Thanks to the author @Nyx0uf
 
             // Get the total bytes downloaded
-            const NSUInteger totalSize = self.imageData.length;
+            const long long totalSize = self.imageData.length;
 
             // Update the data source, we must pass ALL the data, not just the new bytes
             CGImageSourceRef imageSource = CGImageSourceCreateIncremental(NULL);

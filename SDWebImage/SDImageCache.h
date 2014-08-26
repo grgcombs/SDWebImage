@@ -125,6 +125,6 @@ typedef enum SDImageCacheType SDImageCacheType;
 /**
  * Get the number of images in the disk cache
  */
-- (int)getDiskCount;
+- (NSUInteger)getDiskCount;
 
 @end
