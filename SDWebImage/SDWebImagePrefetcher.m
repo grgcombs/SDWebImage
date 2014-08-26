@@ -86,7 +86,7 @@
 - (void)reportStatus
 {
     NSUInteger total = [self.prefetchURLs count];
-    NSLog(@"Finished prefetching (%u successful, %lu skipped, timeElasped %.2f)", total - self.skippedCount, (unsigned long)self.skippedCount, CFAbsoluteTimeGetCurrent() - self.startedTime);
+    NSLog(@"Finished prefetching (%@ successful, %@ skipped, timeElasped %.2f)", @(total - self.skippedCount), @(self.skippedCount), CFAbsoluteTimeGetCurrent() - self.startedTime);
 }
 
 - (void)prefetchURLs:(NSArray *)urls
