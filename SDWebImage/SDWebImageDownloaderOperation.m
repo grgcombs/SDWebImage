@@ -16,8 +16,8 @@
 @property (copy, nonatomic) SDWebImageDownloaderCompletedBlock completedBlock;
 @property (copy, nonatomic) void (^cancelBlock)();
 
-@property (assign, nonatomic, getter = isExecuting) BOOL executing;
-@property (assign, nonatomic, getter = isFinished) BOOL finished;
+@property (assign, nonatomic, getter = isLocalExecuting) BOOL localExecuting;
+@property (assign, nonatomic, getter = isLocalFinished) BOOL localFinished;
 @property (assign, nonatomic) long long expectedSize;
 @property (strong, nonatomic) NSMutableData *imageData;
 @property (strong, nonatomic) NSURLConnection *connection;
@@ -40,8 +40,8 @@
         _progressBlock = [progressBlock copy];
         _completedBlock = [completedBlock copy];
         _cancelBlock = [cancelBlock copy];
-        _executing = NO;
-        _finished = NO;
+        _localExecuting = NO;
+        _localFinished = NO;
         _expectedSize = 0;
     }
     return self;
@@ -126,17 +126,27 @@
     });
 }
 
+- (BOOL)isFinished
+{
+    return self.isLocalFinished;
+}
+
+- (BOOL)isExecuting
+{
+    return self.isLocalExecuting;
+}
+
 - (void)setFinished:(BOOL)finished
 {
     [self willChangeValueForKey:@"isFinished"];
-    _finished = finished;
+    _localFinished = finished;
     [self didChangeValueForKey:@"isFinished"];
 }
 
 - (void)setExecuting:(BOOL)executing
 {
     [self willChangeValueForKey:@"isExecuting"];
-    _executing = executing;
+    _localExecuting = executing;
     [self didChangeValueForKey:@"isExecuting"];
 }
 
